@@ -9,5 +9,5 @@ comment2.target=void\ updown()
 comment3.params=
 comment3.target=void\ dash()
 comment4.params=
-comment4.target=void\ catchKeyShoot()
+comment4.target=void\ hitboss()
 numComments=5

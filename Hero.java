@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Hero extends Actor
 {
+    static GreenfootSound gun = new GreenfootSound("lll.WAV");
     int bulletStep=0;
     /**
      * Act - do whatever the Hero wants to do. This method is called whenever
@@ -18,7 +19,7 @@ public class Hero extends Actor
     {
         catchKeyMove();
         catchKeyShoot();
-        //Life();
+         //touchbeam();
     }
     private void catchKeyMove()
     {
@@ -40,32 +41,41 @@ public class Hero extends Actor
 
     private void catchKeyShoot()
     {
+        try{
         if(Greenfoot.isKeyDown("space"))
         {
+           
             bulletStep++;
-            if(bulletStep==20)
+            if(bulletStep==30)
             {
+                 gun.play();
                 bullet b = new bullet();
                 int posX = getX()+Math.floorDiv(getImage().getWidth(),2)+Math.floorDiv(b.getImage().getWidth(),2);
                 getWorld().addObject(b, posX, getY());
                 bulletStep=0;
             }
         }
-    }
-    public Hero(){
-         if(getWorld() != null)
-            Life();
-    }
-    public void Life(){
-        if(isTouching(enemy1.class)){
-        ((EasyWorld)getWorld()).removeLife();
-        
-            
-        }
-    }
-    public void expol2(){
-        if(isTouching(enemy2.class)){
-            
-        }
+    }catch(IllegalArgumentException e){
+    
     }
 }
+    public Hero(){
+         if(getWorld() != null)
+            
+            touchbeam();
+    }
+    
+    public void touchbeam(){
+        try{
+          if(isTouching(bossbeam.class)){
+            ((Level)getWorld()).removeLife();
+            
+           }
+        }catch(IllegalStateException e){
+        
+        }
+       }
+    }
+    
+
+    

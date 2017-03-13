@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class enemy1 extends Actor
 {
-    public static int score = 0;
-    public static int count = 0 ;
+    public static int score ;
+    public static int count ;
     /**
      * Act - do whatever the enemy1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -30,14 +30,16 @@ public class enemy1 extends Actor
         }
      pop();  
      update();
+     //upscore();
        
     }
 
     public void hit(){
         if(isTouching(bullet.class)){
-            //score++;
-            removeTouching(bullet.class);
             count++;
+            score++;
+            removeTouching(bullet.class);
+            
             
 
             if(count>=3){
@@ -48,21 +50,25 @@ public class enemy1 extends Actor
     }
      public void Life(){
         if(isAtEdge()){
-        ((EasyWorld)getWorld()).removeLife();
+        ((Level)getWorld()).removeLife();
         
             
-        }
-    
+        
+      }
     }
     public enemy1(){
-         if(getWorld() != null){
+        try{ 
+        if(getWorld() != null){
             Life();
         }
+     }catch(ClassCastException e){
         
+} 
     }
     public void pop(){
       try{
         if(isTouching(beam.class)){
+            score++;
             getWorld().removeObject(this);
         }
     
@@ -73,8 +79,8 @@ public class enemy1 extends Actor
   public void update(){
      
       try{
-      if(isAtEdge()||isTouching(bullet.class)){
-        score++;
+      if(isTouching(beam.class)){
+        getWorld().removeObject(this);
      } //getWorld().showText(""+score,getX()/2,getY()/2);
        
         
@@ -85,5 +91,16 @@ public class enemy1 extends Actor
     }
    
  }
+  public void upscore(){
+      try{
+      if(isTouching(bullet.class)){
+        score++;
+        
+        }
+    }catch(IllegalStateException e){
+    
+    }
+}
+
 }
 

@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class boss extends Actor
 {
+    int i;
     int n = 6;
     int test = 5;
     int count ;
     int Step = 0;
+    int hit ;
     /**
      * Act - do whatever the boss wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -20,13 +22,14 @@ public class boss extends Actor
     {
         updown();
         dash();
-        
+         hitboss();
        }
         //setImage("1113758-ds2.png");
     
     public void updown(){
-        setLocation(getX(),getY()-n);
         
+          setLocation(getX(),getY()-n);
+       
         
         if(isAtEdge()){
             n=-n;
@@ -46,11 +49,21 @@ public class boss extends Actor
            test=0;
        }
     }
-     private void catchKeyShoot()
-    {
+     private void hitboss(){
+     if(isTouching(bullet.class)){
+        removeTouching(bullet.class);
+         hit++;
+         if(isTouching(beam.class)){
+            hit+=10;
+            }
+        }if(hit>=50){
+            getWorld().removeObject(this);
+        }
+        
+     }
+    
         
         
     }
     
     
-}

@@ -6,16 +6,17 @@ import java.util.LinkedList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EasyWorld extends World
+public class EasyWorld extends Level
 {
-    int time = 120;
+    //static GreenfootSound beam = new GreenfootSound("xwing.WAV");
+    int time =0;
     public static int compare;
     int skill;
-    public static int score = 0;
+    int dok= 0;
     boolean n;
     int i ;
-    int life = 5;
-    LinkedList<life> lifes = new LinkedList<>();
+    //public static int score();
+    
     public EasyWorld()
     {    
        super(1100,600, 1); 
@@ -36,25 +37,25 @@ public class EasyWorld extends World
     }
     public void act() {
         i++;
-        if(i%100==0&&!n){
+        if(i==100&&!n){
             randomEnemy1();
-           if(score<=20){
-            score++;
+           i=0;
+            if(dok<=20){
+            dok++;
            }
-           if(getObjects(boss.class).isEmpty()&&score==20){
-               score=0;
+           if(getObjects(boss.class).isEmpty()&&dok==20){
+               dok=0;
                n=true;
-           // addObject(new boss(),900,300);
+          
            
            }
          
         }
-        showText("time"+time,500,300);
+        uplife();
+        showText("time :"+time,1000,50);
+        showText("score :"+enemy1.score,900,50);
         scoreb();
-        /*if(i%100==0&&!n) {
-            
-            randomEnemy2();
-        }*/
+       
        
     }
     public void randomEnemy1(){
@@ -70,25 +71,12 @@ public class EasyWorld extends World
         
         addObject(new enemy2(), x, y);
     }
-     public void removeLife()
-    {
-        try{
-            life life_ = lifes.getLast();
-            removeObject(life_);
-           
-            lifes.removeLast();
-            life--;
-            if(life == 0){
-                Greenfoot.setWorld(new scoreb());
-            }
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+    
     public void Skill(){
         skill++;
         if(skill>=900){
          if(Greenfoot.isKeyDown("z")){
+          
            addObject(new beam(),10,300);
            skill=0;
          }
@@ -99,15 +87,20 @@ public class EasyWorld extends World
     public void scoreb(){
         compare++;
         if(compare%60==0){
-            time--;
-            if(time==0){
-                Greenfoot.setWorld(new scoreb());
+            time++;
             
-            }
         }
         
 
  }
+    public void uplife(){
+       if(getObjects(life.class).isEmpty()){
+           Greenfoot.setWorld(new scoreb());
+        
+           
+        }  
+    }
+ 
 }   
 
 
