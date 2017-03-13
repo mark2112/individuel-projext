@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=EasyWorld
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ EasyWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=EasyWorld()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ randomEnemy1()
+comment4.params=
+comment4.target=void\ randomEnemy2()
+comment5.params=
+comment5.target=void\ removeLife()
+comment6.params=
+comment6.target=void\ Skill()
+comment7.params=
+comment7.target=void\ scoreb()
+numComments=8
