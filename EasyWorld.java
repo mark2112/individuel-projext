@@ -8,14 +8,14 @@ import java.util.LinkedList;
  */
 public class EasyWorld extends Level
 {
-    //static GreenfootSound beam = new GreenfootSound("xwing.WAV");
+    
     int time =0;
-    public static int compare;
+     int compare;
     int skill;
     int dok= 0;
     boolean n;
     int i ;
-    //public static int score();
+    
     
     public EasyWorld()
     {    
@@ -23,7 +23,7 @@ public class EasyWorld extends Level
        for(int i = 0; i < 5; ++i){
             lifes.addLast(new life());
         } 
-        addObject(new Hero(),500,300);
+        
        n=false;
        int offset = 127;
        for(life l : lifes){
@@ -31,7 +31,8 @@ public class EasyWorld extends Level
             offset += 36;
         }
         addObject(new skill(),55,55);
-       
+        addObject(new Home(),1013,54);
+        addObject(new Hero(),500,300);
        
        
     }
@@ -52,9 +53,10 @@ public class EasyWorld extends Level
          
         }
         uplife();
-        showText("time :"+time,1000,50);
+        //showText("time :"+time,1000,50);
         showText("score :"+enemy1.score,900,50);
         scoreb();
+        toscore();
        
        
     }
@@ -96,9 +98,20 @@ public class EasyWorld extends Level
     public void uplife(){
        if(getObjects(life.class).isEmpty()){
            Greenfoot.setWorld(new scoreb());
-        
+           enemy1.score = 0;
            
         }  
+    }
+    public void toscore(){
+       try{
+        if(enemy1.score>=15){
+            Greenfoot.setWorld(new scoreb());
+            enemy1.score = 0;
+            
+        }
+       }catch(IllegalStateException e){
+        
+       }
     }
  
 }   

@@ -21,16 +21,16 @@ public class MediumWorld extends Level
        for(int i = 0; i < 5; ++i){
             lifes.addLast(new life());
         } 
-        addObject(new Hero(),1000,50);
+        
        n=false;
        int offset = 127;
        for(life l : lifes){
             addObject(l, offset, 19);
             offset += 36;
         }
-        addObject(new skill(),55,55);
-       
-       
+       addObject(new skill(),55,55);
+       addObject(new Home(),1013,54);
+       addObject(new Hero(),500,300);
        
     }
     public void act() {
@@ -44,14 +44,18 @@ public class MediumWorld extends Level
                dok=0;
                n=true;
            addObject(new boss(),900,300);
+               
+                    
            
            }
+           
+           
          
         }
-        showText("time"+time,1000,50);
+        lose();
         scoreb();
         uplife();
-       
+        showText("score :"+enemy1.score,900,50);
     }
     public void randomEnemy1(){
         int x = getWidth();
@@ -90,10 +94,19 @@ public class MediumWorld extends Level
   public void uplife(){
        if(getObjects(life.class).isEmpty()){
            Greenfoot.setWorld(new scoreb());
+           enemy1.score = 0;
            
            
         }  
     }
+    public void lose(){
+      if(getObjects(Hero.class).isEmpty()){
+        Greenfoot.setWorld(new scoreb());
+        
+    
+      }
+   }
+ 
 }   
 
 

@@ -19,7 +19,7 @@ public class Hero extends Actor
     {
         catchKeyMove();
         catchKeyShoot();
-         //touchbeam();
+         
     }
     private void catchKeyMove()
     {
@@ -46,7 +46,7 @@ public class Hero extends Actor
         {
            
             bulletStep++;
-            if(bulletStep==30)
+            if(bulletStep==40)
             {
                  gun.play();
                 bullet b = new bullet();
@@ -59,11 +59,11 @@ public class Hero extends Actor
     
     }
 }
-    public Hero(){
+    /*public Hero(){
          if(getWorld() != null)
             
-            touchbeam();
-    }
+            
+    }*/
     
     public void touchbeam(){
         try{

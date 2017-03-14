@@ -8,8 +8,8 @@ import java.util.LinkedList;
  */
 public class HardWorld extends Level
 {
-    int time = 0;
-    public static int compare;
+    
+     int compare;
     int skill;
    int dok;
     boolean n;
@@ -22,7 +22,7 @@ public class HardWorld extends Level
        for(int i = 0; i < 5; ++i){
             lifes.addLast(new life());
         } 
-        addObject(new Hero(),500,300);
+       
        n=false;
        int offset = 127;
        for(life l : lifes){
@@ -30,13 +30,14 @@ public class HardWorld extends Level
             offset += 36;
         }
         addObject(new skill(),55,55);
-       
+       addObject(new Home(),1013,54);
+        addObject(new Hero(),500,300);
        
        
     }
     public void act() {
         i++;
-        if(i%100==0&&!n){
+        if(i%100==0){
             randomEnemy1();
            if(dok<=30){
             dok++;
@@ -49,9 +50,9 @@ public class HardWorld extends Level
            }
          
         }
-        showText("time"+time,1000,50);
-        scoreb();
+        showText("score :"+enemy1.score,900,50);
         uplife();
+        lose();
         
        
     }
@@ -80,24 +81,22 @@ public class HardWorld extends Level
         
         
     }
-    public void scoreb(){
-        compare++;
-        if(compare%60==0){
-            time++;
-            
-        }
-     
-        
-
-    }
+   
      public void uplife(){
        if(getObjects(life.class).isEmpty()){
            Greenfoot.setWorld(new scoreb());
+           enemy1.score = 0;
         
            
         }  
     }
- 
+    public void lose(){
+    if(getObjects(Hero.class).isEmpty()){
+        Greenfoot.setWorld(new scoreb());
+        
+    
+    }
+   }
 }
  
 

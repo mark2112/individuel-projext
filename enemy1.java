@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class enemy1 extends Actor
 {
-    public static int score ;
+    public static int score  = 0;
     public static int count ;
+    public static int here = 0;
     /**
      * Act - do whatever the enemy1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -30,7 +31,8 @@ public class enemy1 extends Actor
         }
      pop();  
      update();
-     //upscore();
+     
+     
        
     }
 
@@ -81,7 +83,7 @@ public class enemy1 extends Actor
       try{
       if(isTouching(beam.class)){
         getWorld().removeObject(this);
-     } //getWorld().showText(""+score,getX()/2,getY()/2);
+     } 
        
         
      
@@ -101,6 +103,7 @@ public class enemy1 extends Actor
     
     }
 }
+ 
 
 }
 

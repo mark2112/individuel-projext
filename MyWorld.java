@@ -18,13 +18,13 @@ public class MyWorld extends World
     {    
         
         super(960,540, 1); 
-        //kuy.play();
+        kuy.playLoop();
      
         addObject(new Logo(),214,102);
         addObject(new easy(),203,269);
         addObject(new medium(),221,333);
         addObject(new Hard(),204,398);
-        
+        addObject(new Howto(),243,466);
     }
     
 }

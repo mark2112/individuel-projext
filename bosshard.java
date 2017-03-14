@@ -59,20 +59,23 @@ public class bosshard extends Actor
          if(isTouching(beam.class)){
             hit+=10;
             }
-        }if(hit>=100){
+        }if(hit>=150){
             getWorld().removeObject(this);
+            Greenfoot.setWorld(new scoreb());
+            enemy1.score = 0;
         }
         
         }
     public void bossattack(){
-    int x = 900;
+    int x = 1100;
     int y = Greenfoot.getRandomNumber(600);
      
         beam++;
         
         if(beam==900){
+            getWorld().addObject(new bossbeam(),1100,300);
+            getWorld().addObject(new bossbeam(),900,500);
             getWorld().addObject(new bossbeam(),900,100);
-            getWorld().addObject(new bossbeam(),900,300);
             getWorld().addObject(new bossbeam(),x,y);
             beam=0;
             

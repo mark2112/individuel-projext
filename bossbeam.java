@@ -14,9 +14,8 @@ public class bossbeam extends Actor
      */
     public void act() 
     {
-        setLocation(getX()-3,getY());
-        if(isAtEdge()){
-            getWorld().removeObject(this);
+        setLocation(getX()-8,getY());
+        
      try{
         if(isAtEdge()){
             getWorld().removeObject(this);
@@ -25,17 +24,45 @@ public class bossbeam extends Actor
     }catch(IllegalStateException e){
             
         }
-        }
+        del();
         Life();
         
     }
      public void Life(){
-        if(isTouching(Hero.class)){
-         Greenfoot.setWorld(new scoreb());
-        
-            
+         try{ 
+         if(canSee(Hero.class));
+        {
+            eat(Hero.class);
+        }
+    }catch(IllegalStateException e){
+    
+    }  
         
       }
-    }
-
+      public boolean canSee(Class clss) {
+         return getOneObjectAtOffset(0, 0, clss) != null;
 }
+ 
+
+      public void eat(Class clss) {
+         Actor actor = getOneObjectAtOffset(0, 0, clss);
+         if(actor != null) {
+           getWorld().removeObject(actor);
+    }
+ }
+      public void del(){
+        try{
+         if(isAtEdge()){
+            getWorld().removeObject(this);
+           
+        }
+        }catch(IllegalStateException e){
+            
+        }
+          
+        }
+ 
+}
+
+
+
